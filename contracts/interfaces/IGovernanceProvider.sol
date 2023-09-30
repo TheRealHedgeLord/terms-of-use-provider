@@ -3,6 +3,6 @@ pragma solidity ^0.8.0;
 
 interface IGovernanceProvider {
 
-	function owner() public view returns(address);
+	function getOwner() external view returns(address);
 
 }

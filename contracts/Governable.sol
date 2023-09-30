@@ -6,14 +6,24 @@ import './interfaces/IGovernanceProvider.sol';
 
 contract Governable {
 
-	address public governanceProvider;
+	address private governanceProvider;
 
 	modifier ownerOnly {
 		require(
-			msg.sender == IGovernanceProvider(governanceProvider).owner(),
+			msg.sender == IGovernanceProvider(governanceProvider).getOwner(),
 			"Governance: Access denied"
 		);
 		_;
+	}
+
+    constructor(
+        address initialGovernanceProvider
+    ) {
+        governanceProvider = initialGovernanceProvider;
+    }
+
+	function getGovernanceProvider() public view returns(address) {
+		return governanceProvider;
 	}
 
 	function setGovernanceProvider(

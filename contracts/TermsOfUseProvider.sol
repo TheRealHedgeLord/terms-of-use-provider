@@ -18,12 +18,10 @@ contract TermsOfUseProvider is Governable {
 
     constructor(
         address initialGovernanceProvider
-    ) {
-        governanceProvider = initialGovernanceProvider;
-    }
+    ) Governable(initialGovernanceProvider) {}
 
     function recoverSigner(
-        string message,
+        string memory message,
         uint8 v,
         bytes32 r,
         bytes32 s
@@ -99,7 +97,7 @@ contract TermsOfUseProvider is Governable {
     }
 
     function sendSignature(
-        address singer,
+        address signer,
         uint256 index,
         uint8 v,
         bytes32 r,
